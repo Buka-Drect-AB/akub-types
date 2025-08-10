@@ -22,12 +22,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Finsel-DGI/akub-types.git"
+    "url": "git+https://github.com/Buka-Drect-AB/akub-types.git"
   },
   "bugs": {
-    "url": "https://github.com/Finsel-DGI/akub-types/issues"
+    "url": "https://github.com/Buka-Drect-AB/akub-types/issues"
   },
-  "homepage": "https://github.com/Finsel-DGI/akub-types#readme",
+  "homepage": "https://github.com/Buka-Drect-AB/akub-types#readme",
   "author": "Jackmay Confidence",
   "license": "MIT",
   "devDependencies": {
