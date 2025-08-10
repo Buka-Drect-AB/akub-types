@@ -12,7 +12,7 @@ console-shared-types/
 │   ├── classes/        # Class definitions
 │   │   └── index.ts    # Classes barrel export
 │   └── index.ts        # Main entry point
-├── dist/               # Compiled JavaScript (generated)
+├── build/               # Compiled JavaScript (generated)
 ├── tsconfig.json       # TypeScript configuration
 ├── package.json        # Package configuration
 └── README.md          # This file
@@ -72,9 +72,9 @@ export * from './example-class';
 
 ## Building
 
-The project uses TypeScript's compiler to generate JavaScript files and type definitions in the `dist/` directory. The build process:
+The project uses TypeScript's compiler to generate JavaScript files and type definitions in the `build/` directory. The build process:
 
-1. Cleans the `dist/` directory
+1. Cleans the `build/` directory
 2. Compiles TypeScript to JavaScript
 3. Generates type definition files (`.d.ts`)
 
@@ -83,5 +83,5 @@ The project uses TypeScript's compiler to generate JavaScript files and type def
 The package exports all types and classes through the main entry point at `src/index.ts`. When importing from this package, you can access all exported types and classes:
 
 ```typescript
-import { ExampleType, ExampleClass } from 'console-shared-types';
+import { ExampleType, ExampleClass } from 'akub-types';
 ``` 
