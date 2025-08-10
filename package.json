@@ -1,5 +1,5 @@
 {
-  "name": "akub-types",
+  "name": "@akub/types",
   "version": "1.0.0",
   "description": "Shared TypeScript types and classes for akub new systems",
   "main": "build/index.js",
