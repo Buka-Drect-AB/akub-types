@@ -18,6 +18,10 @@ export type Transaction = {
     provider?: string;
     relationship: TransactionRelationship;
     amount: number;
+    tax: {
+        percentage: number;
+        behaviour: 'inclusive' | 'excluded';
+    };
     paid_at?: number;
     currency: string;
     customer?: string;

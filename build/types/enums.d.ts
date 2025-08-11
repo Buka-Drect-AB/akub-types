@@ -38,6 +38,7 @@ export declare const paymentStatus: {
     pending: "pending";
     failed: "failed";
     refunded: "refunded";
+    cancelled: "cancelled";
 };
 export declare const transactionType: {
     credit: "credit";

@@ -36,7 +36,7 @@ exports.businessType = {
     llc: "Limited company",
     sole: "Sole trader",
 };
-exports.paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded']);
+exports.paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded', 'cancelled']);
 exports.transactionType = strEnum(['credit', 'debit']);
 function strEnum(o) {
     return o.reduce((res, key) => {

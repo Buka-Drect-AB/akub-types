@@ -39,7 +39,7 @@ export const businessType = {
   sole: "Sole trader",
 } as const;
 
-export const paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded']);
+export const paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded', 'cancelled']);
 export const transactionType = strEnum(['credit', 'debit']);
 
 export type PaymentStatus = keyof typeof paymentStatus;
