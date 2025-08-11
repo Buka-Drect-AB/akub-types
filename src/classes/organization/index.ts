@@ -48,12 +48,6 @@ export type Organization = {
     mandatory: boolean;
     marketing: boolean;
   };
-  integration?: {
-    paystack: {
-      test?: Integration,
-      live?: Integration,
-    }
-  }
 } & DocumentSchema;
 
 export class OrganizationModel extends Model<Organization> {

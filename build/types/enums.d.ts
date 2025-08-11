@@ -21,8 +21,8 @@ export declare const roles: {
     readonly supervisor: "supervisor";
 };
 export declare const staffRoles: {
-    readonly waiter: "waiter";
-    readonly kitchen: "kitchen";
+    readonly processor: "Order processor";
+    readonly cashier: "Transaction handler";
 };
 export declare const authProvider: {
     readonly email: "Email address";

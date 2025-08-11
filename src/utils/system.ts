@@ -12,6 +12,23 @@ export function generateShortCodeFromName(name: string): string {
   return `${clean}-${suffix}`;       // e.g., "AKU-9X2Q"
 }
 
+export function generateStaffShortCode(orgShortCode: string, staffData: { fullName: string; email?: string; phone?: string }): string {
+  const baseString = `${staffData.fullName}${staffData.email || ''}${staffData.phone || ''}`;
+
+  // Simple hash to number
+  let hash = 0;
+  for (let i = 0; i < baseString.length; i++) {
+    hash = (hash << 5) - hash + baseString.charCodeAt(i);
+    hash |= 0; // Convert to 32bit int
+  }
+
+  // Convert hash to uppercase alphanumeric
+  const suffix = Math.abs(hash).toString(36).toUpperCase().slice(-4);
+
+  return `${orgShortCode}-${suffix}`;
+}
+
+
 
 export function unixTimeStampNow(): number {
   const now = new Date();

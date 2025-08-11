@@ -45,12 +45,6 @@ export type Organization = {
         mandatory: boolean;
         marketing: boolean;
     };
-    integration?: {
-        paystack: {
-            test?: Integration;
-            live?: Integration;
-        };
-    };
 } & DocumentSchema;
 export declare class OrganizationModel extends Model<Organization> {
     static generateShortCode(name: string): string;

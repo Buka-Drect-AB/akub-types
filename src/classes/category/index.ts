@@ -54,7 +54,7 @@ export class CategoryModel extends Model<Category> {
     return EMOJI_POOL[index];
   }
 
-  static extractFromNewBrackets(input: string): string | null {
+  public static extractFromNewBrackets(input: string): string | null {
     const regex = /new\[([a-zA-Z-]+)\]/;
     const match = input.match(regex);
 

@@ -24,8 +24,8 @@ export const roles = {
 } as const;
 
 export const staffRoles = {
-  waiter: "waiter",
-  kitchen: "kitchen",
+  processor: "Order processor",
+  cashier: "Transaction handler",
 } as const;
 
 export const authProvider = {

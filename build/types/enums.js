@@ -24,8 +24,8 @@ exports.roles = {
     supervisor: "supervisor"
 };
 exports.staffRoles = {
-    waiter: "waiter",
-    kitchen: "kitchen",
+    processor: "Order processor",
+    cashier: "Transaction handler",
 };
 exports.authProvider = {
     email: "Email address",

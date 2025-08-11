@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateShortCodeFromName = generateShortCodeFromName;
+exports.generateStaffShortCode = generateStaffShortCode;
 exports.unixTimeStampNow = unixTimeStampNow;
 exports.createSlug = createSlug;
 exports.unslug = unslug;
@@ -13,6 +14,18 @@ function generateShortCodeFromName(name) {
         .slice(0, 3); // take up to first 3 letters (e.g. "AKU" from "Akub Ventures")
     const suffix = nanoid(); // e.g., "9X2Q"
     return `${clean}-${suffix}`; // e.g., "AKU-9X2Q"
+}
+function generateStaffShortCode(orgShortCode, staffData) {
+    const baseString = `${staffData.fullName}${staffData.email || ''}${staffData.phone || ''}`;
+    // Simple hash to number
+    let hash = 0;
+    for (let i = 0; i < baseString.length; i++) {
+        hash = (hash << 5) - hash + baseString.charCodeAt(i);
+        hash |= 0; // Convert to 32bit int
+    }
+    // Convert hash to uppercase alphanumeric
+    const suffix = Math.abs(hash).toString(36).toUpperCase().slice(-4);
+    return `${orgShortCode}-${suffix}`;
 }
 function unixTimeStampNow() {
     const now = new Date();

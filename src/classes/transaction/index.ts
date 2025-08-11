@@ -1,14 +1,17 @@
 import { DocumentSchema, PaymentStatus, TransactionType } from "../..";
 import { Model } from "../model";
 
+export interface TransactionRelationship {
+  balance_after?: number;
+  merchant: string;
+  fee: number;
+}
+
 export interface LineItem { price: string, quantity: number };
 export type Transaction = {
   reference: string;
   provider: string;
-  relationship: {
-    merchant: string;
-    fee: number;
-  };
+  relationship: TransactionRelationship;
   amount: number;
   paid_at?: number;
   currency: string;
