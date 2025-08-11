@@ -3,23 +3,27 @@ import { Model } from "../model";
 export interface TransactionRelationship {
     balance_after?: number;
     merchant: string;
+    staff?: string;
     fee: number;
 }
 export interface LineItem {
-    price: string;
+    currency: string;
+    amount: number;
     quantity: number;
+    item: string;
+    reference?: string;
 }
 export type Transaction = {
     reference: string;
-    provider: string;
+    provider?: string;
     relationship: TransactionRelationship;
     amount: number;
     paid_at?: number;
     currency: string;
-    customer: string;
+    customer?: string;
     type: TransactionType;
     provider_fee?: number;
-    redirect_url: string;
+    redirect_url?: string;
     domain: 'test' | 'live';
     status: PaymentStatus;
     metadata?: {
@@ -27,4 +31,6 @@ export type Transaction = {
     };
 } & DocumentSchema;
 export declare class TransactionModel extends Model<Transaction> {
+    static calculateTotal(lineItems: LineItem[]): number;
+    static calculateFee(total: number, percentage: number): number;
 }

@@ -6,6 +6,7 @@ export type Staff = {
   createdBy: string; // user id
   whatsapp?: string;
   shortCode: string;
+  domain: "test" | "live";
   name: string;
   venues: string[]; // venues this inventory apply to
   pin: string;
