@@ -31,11 +31,22 @@ export type Transaction = {
     redirect_url?: string;
     domain: 'test' | 'live';
     status: PaymentStatus;
+    payment?: {
+        method: string;
+        card?: {
+            card_type: string;
+            first_six: string;
+            last_four: string;
+            expiry: string;
+        };
+    };
     metadata?: {
         line_items: LineItem[] | undefined | null;
+        related_to?: string;
     };
 } & DocumentSchema;
 export declare class TransactionModel extends Model<Transaction> {
     static calculateTotal(lineItems: LineItem[]): number;
     static calculateFee(total: number, percentage: number): number;
+    static copyWith(transaction: Transaction, updates: Partial<Transaction>): Transaction;
 }

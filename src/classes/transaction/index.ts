@@ -27,8 +27,18 @@ export type Transaction = {
   redirect_url?: string;
   domain: 'test' | 'live';
   status: PaymentStatus,
+  payment?: {
+    method: string;
+    card?: {
+      card_type: string;
+      first_six: string;
+      last_four: string;
+      expiry: string;
+    },
+  } 
   metadata?: {
     line_items: LineItem[] | undefined | null,
+    related_to?: string; // if was a retry of an older transaction that failed
   },
 } & DocumentSchema;
 
@@ -54,5 +64,22 @@ export class TransactionModel extends Model<Transaction> {
 
   public static calculateFee(total: number, percentage: number) {
     return (total * percentage) / 100;
+  }
+
+  public static copyWith(transaction: Transaction, updates: Partial<Transaction>): Transaction {
+    return {
+      ...transaction,
+      ...updates,
+      // Handle nested objects that need deep merging
+      relationship: updates.relationship 
+        ? { ...transaction.relationship, ...updates.relationship }
+        : transaction.relationship,
+      tax: updates.tax 
+        ? { ...transaction.tax, ...updates.tax }
+        : transaction.tax,
+      metadata: updates.metadata 
+        ? { ...transaction.metadata, ...updates.metadata }
+        : transaction.metadata,
+    };
   }
 }

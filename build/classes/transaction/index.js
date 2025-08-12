@@ -22,6 +22,14 @@ class TransactionModel extends model_1.Model {
     static calculateFee(total, percentage) {
         return (total * percentage) / 100;
     }
+    static copyWith(transaction, updates) {
+        return Object.assign(Object.assign(Object.assign({}, transaction), updates), { 
+            // Handle nested objects that need deep merging
+            relationship: updates.relationship
+                ? Object.assign(Object.assign({}, transaction.relationship), updates.relationship) : transaction.relationship, tax: updates.tax
+                ? Object.assign(Object.assign({}, transaction.tax), updates.tax) : transaction.tax, metadata: updates.metadata
+                ? Object.assign(Object.assign({}, transaction.metadata), updates.metadata) : transaction.metadata });
+    }
 }
 exports.TransactionModel = TransactionModel;
 //# sourceMappingURL=index.js.map
