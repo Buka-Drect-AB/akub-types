@@ -5,6 +5,7 @@ export interface TransactionRelationship {
   balance_after?: number;
   merchant: string;
   staff?: string;
+  venue?: string;
   fee: number;
 }
 
