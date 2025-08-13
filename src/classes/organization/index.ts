@@ -54,7 +54,17 @@ export class OrganizationModel extends Model<Organization> {
   public static generateShortCode(name: string): string {
     return generateShortCodeFromName(name);
   }
+
+  public userRole(uid: string): DashboardRoles | undefined {
+    return this.schema.roles[uid];
+  }
 }
+
+
+export type OrgRequest = {
+  org: string;
+  uid: string; // authenticated user
+} & DocumentSchema;
 
 
 export type Venue = {

@@ -48,7 +48,12 @@ export type Organization = {
 } & DocumentSchema;
 export declare class OrganizationModel extends Model<Organization> {
     static generateShortCode(name: string): string;
+    userRole(uid: string): DashboardRoles | undefined;
 }
+export type OrgRequest = {
+    org: string;
+    uid: string;
+} & DocumentSchema;
 export type Venue = {
     org: string;
     name: string;

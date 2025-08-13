@@ -2,6 +2,7 @@ export declare const collections: {
     readonly users: "users";
     readonly orgs: "orgs";
     readonly staffs: "staffs";
+    readonly orgRequests: "orgRequests";
     readonly venues: "venues";
     readonly accounts: "accounts";
     readonly subscriptions: "subscriptions";
@@ -19,6 +20,7 @@ export declare const roles: {
     readonly owner: "owner";
     readonly admin: "admin";
     readonly supervisor: "supervisor";
+    readonly viewer: "viewer";
 };
 export declare const staffRoles: {
     readonly processor: "Order processor";

@@ -5,6 +5,7 @@ exports.collections = {
     users: "users",
     orgs: "orgs",
     staffs: "staffs",
+    orgRequests: "orgRequests",
     venues: "venues", // sub document
     accounts: "accounts", // sub document
     subscriptions: "subscriptions",
@@ -21,7 +22,8 @@ exports.plans = {
 exports.roles = {
     owner: "owner",
     admin: "admin",
-    supervisor: "supervisor"
+    supervisor: "supervisor",
+    viewer: "viewer",
 };
 exports.staffRoles = {
     processor: "Order processor",

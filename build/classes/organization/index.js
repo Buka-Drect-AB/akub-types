@@ -7,6 +7,9 @@ class OrganizationModel extends model_1.Model {
     static generateShortCode(name) {
         return (0, system_1.generateShortCodeFromName)(name);
     }
+    userRole(uid) {
+        return this.schema.roles[uid];
+    }
 }
 exports.OrganizationModel = OrganizationModel;
 //# sourceMappingURL=index.js.map

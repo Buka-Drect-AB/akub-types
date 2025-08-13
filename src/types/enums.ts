@@ -2,6 +2,7 @@ export const collections = {
   users: "users",
   orgs: "orgs",
   staffs: "staffs",
+  orgRequests: "orgRequests",
   venues: "venues", // sub document
   accounts: "accounts", // sub document
   subscriptions: "subscriptions",
@@ -20,7 +21,8 @@ export const plans = {
 export const roles = {
   owner: "owner",
   admin: "admin",
-  supervisor: "supervisor"
+  supervisor: "supervisor",
+  viewer: "viewer",
 } as const;
 
 export const staffRoles = {
