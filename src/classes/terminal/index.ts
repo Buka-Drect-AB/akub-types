@@ -11,6 +11,7 @@ export type Terminal = {
   domain: Transaction['domain'],
   reference: string;
   merchant: string;
+  venue: string;
   provider: {
     source: string;
     id: string;
