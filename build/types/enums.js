@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.transactionType = exports.paymentStatus = exports.businessType = exports.authProvider = exports.staffRoles = exports.roles = exports.plans = exports.collections = void 0;
+exports.environmentType = exports.transactionType = exports.paymentStatus = exports.businessType = exports.authProvider = exports.staffRoles = exports.roles = exports.plans = exports.collections = void 0;
 exports.collections = {
     users: "users",
     orgs: "orgs",
@@ -13,6 +13,7 @@ exports.collections = {
     transactions: "transactions",
     customers: "customers",
     categories: "categories",
+    terminals: "terminals",
     inventory: "inventory", // sub document
 };
 exports.plans = {
@@ -40,6 +41,7 @@ exports.businessType = {
 };
 exports.paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded', 'cancelled']);
 exports.transactionType = strEnum(['credit', 'debit']);
+exports.environmentType = strEnum(['live', 'test']);
 function strEnum(o) {
     return o.reduce((res, key) => {
         res[key] = key;

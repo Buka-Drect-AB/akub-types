@@ -24,4 +24,5 @@ __exportStar(require("./staff/index"), exports);
 __exportStar(require("./transaction/index"), exports);
 __exportStar(require("./customer/index"), exports);
 __exportStar(require("./payouts/index"), exports);
+__exportStar(require("./terminal/index"), exports);
 //# sourceMappingURL=index.js.map

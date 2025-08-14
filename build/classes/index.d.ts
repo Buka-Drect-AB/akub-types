@@ -6,3 +6,4 @@ export * from './staff/index';
 export * from './transaction/index';
 export * from './customer/index';
 export * from './payouts/index';
+export * from './terminal/index';

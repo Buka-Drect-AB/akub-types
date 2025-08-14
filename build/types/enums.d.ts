@@ -10,6 +10,7 @@ export declare const collections: {
     readonly transactions: "transactions";
     readonly customers: "customers";
     readonly categories: "categories";
+    readonly terminals: "terminals";
     readonly inventory: "inventory";
 };
 export declare const plans: {
@@ -46,10 +47,15 @@ export declare const transactionType: {
     credit: "credit";
     debit: "debit";
 };
+export declare const environmentType: {
+    live: "live";
+    test: "test";
+};
 export type PaymentStatus = keyof typeof paymentStatus;
 export type TransactionType = keyof typeof transactionType;
 export type BillingPlans = keyof typeof plans;
 export type BusinessType = keyof typeof businessType;
 export type DashboardRoles = keyof typeof roles;
 export type StaffRoles = keyof typeof staffRoles;
+export type EnvironmentType = keyof typeof environmentType;
 export type AuthenticationProvider = keyof typeof authProvider;
