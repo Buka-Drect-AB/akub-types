@@ -57,6 +57,7 @@ export type OrgRequest = {
 export type Venue = {
     org: string;
     name: string;
+    slug: string;
     createdBy: string;
     image?: string;
     description?: string;
