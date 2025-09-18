@@ -10,6 +10,7 @@ export interface TransactionRelationship {
 }
 
 export interface LineItem { currency: string, amount: number, quantity: number, item: string, reference?: string };
+
 export type Transaction = {
   reference: string;
   provider?: string;

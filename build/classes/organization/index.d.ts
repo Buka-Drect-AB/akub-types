@@ -69,6 +69,9 @@ export type Venue = {
     };
     isActive: boolean;
 } & DocumentSchema;
+export declare class VenueModel extends Model<Venue> {
+    getAddressAsText(): string;
+}
 export type SettlementAccount = {
     org: string;
     createdBy: string;

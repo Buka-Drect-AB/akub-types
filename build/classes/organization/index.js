@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrganizationModel = void 0;
+exports.VenueModel = exports.OrganizationModel = void 0;
 const model_1 = require("../model");
 const system_1 = require("../../utils/system");
 class OrganizationModel extends model_1.Model {
@@ -12,4 +12,20 @@ class OrganizationModel extends model_1.Model {
     }
 }
 exports.OrganizationModel = OrganizationModel;
+class VenueModel extends model_1.Model {
+    getAddressAsText() {
+        const address = this.schema.address;
+        if (!address) {
+            return '';
+        }
+        const addressParts = [
+            address.place,
+            address.city,
+            address.state,
+            address.country
+        ].filter(part => part && part.trim() !== '');
+        return addressParts.join(', ');
+    }
+}
+exports.VenueModel = VenueModel;
 //# sourceMappingURL=index.js.map

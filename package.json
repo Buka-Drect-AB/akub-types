@@ -31,11 +31,9 @@
   "author": "Jackmay Confidence",
   "license": "MIT",
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.2",
     "nanoid": "^5.1.5"
   }
 }

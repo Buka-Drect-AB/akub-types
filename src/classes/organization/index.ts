@@ -83,6 +83,24 @@ export type Venue = {
   isActive: boolean;
 } & DocumentSchema;
 
+export class VenueModel extends Model<Venue> {
+  public getAddressAsText(): string {
+    const address = this.schema.address;
+    if (!address) {
+      return '';
+    }
+
+    const addressParts = [
+      address.place,
+      address.city,
+      address.state,
+      address.country
+    ].filter(part => part && part.trim() !== '');
+
+    return addressParts.join(', ');
+  }
+}
+
 export type SettlementAccount = {
   org: string;
   createdBy: string;
