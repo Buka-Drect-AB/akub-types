@@ -7,7 +7,9 @@ export const collections = {
   accounts: "accounts", // sub document
   subscriptions: "subscriptions",
   payments: "payments",
+  ledger: "balanceLedger", // sub document
   transactions: "transactions",
+  payouts: "payouts",
   customers: "customers",
   categories: "categories",
   terminals: "terminals",

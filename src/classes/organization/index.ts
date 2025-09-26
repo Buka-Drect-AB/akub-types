@@ -48,6 +48,7 @@ export type Organization = {
     mandatory: boolean;
     marketing: boolean;
   };
+  demo?: boolean;
 } & DocumentSchema;
 
 export class OrganizationModel extends Model<Organization> {

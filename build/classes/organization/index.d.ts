@@ -45,6 +45,7 @@ export type Organization = {
         mandatory: boolean;
         marketing: boolean;
     };
+    demo?: boolean;
 } & DocumentSchema;
 export declare class OrganizationModel extends Model<Organization> {
     static generateShortCode(name: string): string;

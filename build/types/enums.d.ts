@@ -7,7 +7,9 @@ export declare const collections: {
     readonly accounts: "accounts";
     readonly subscriptions: "subscriptions";
     readonly payments: "payments";
+    readonly ledger: "balanceLedger";
     readonly transactions: "transactions";
+    readonly payouts: "payouts";
     readonly customers: "customers";
     readonly categories: "categories";
     readonly terminals: "terminals";
