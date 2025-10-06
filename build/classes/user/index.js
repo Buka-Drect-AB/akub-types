@@ -31,6 +31,9 @@ class UserModel extends model_1.Model {
         // Both names exist
         return `${firstName} ${lastName}`;
     }
+    static createFullName(name) {
+        return `${name.first}${name.middle ? ` ${name.middle}` : ''} ${name.last}`;
+    }
 }
 exports.UserModel = UserModel;
 //# sourceMappingURL=index.js.map

@@ -18,6 +18,12 @@ interface Balance {
     lifetime_credits?: number;
     lifetime_debits?: number;
 }
+interface ConnectProvider {
+    identifier: string;
+    charges_enabled: boolean;
+    payouts_enabled: boolean;
+    details_submitted: boolean;
+}
 export type Organization = {
     name: string;
     slug: string;
@@ -46,6 +52,12 @@ export type Organization = {
         marketing: boolean;
     };
     demo?: boolean;
+    connect_providers?: {
+        [key: string]: {
+            live?: ConnectProvider;
+            test?: ConnectProvider;
+        };
+    };
 } & DocumentSchema;
 export declare class OrganizationModel extends Model<Organization> {
     static generateShortCode(name: string): string;

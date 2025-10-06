@@ -7,6 +7,7 @@ export type User = {
     naming: {
         first: string;
         last: string;
+        middle?: string;
     };
     isNewUser: boolean;
     email: string;
@@ -17,6 +18,12 @@ export type User = {
     photoUrl: string | null | undefined;
     eid?: string;
     phone: string | null | undefined;
+    banking?: {
+        bvn?: {
+            value: string;
+            hint: string;
+        };
+    };
     security: {
         emailVerified: boolean;
         phoneVerified: boolean;
@@ -26,4 +33,9 @@ export type User = {
 export declare class UserModel extends Model<User> {
     get accountIsValid(): boolean;
     get fullname(): string;
+    static createFullName(name: {
+        first: string;
+        last: string;
+        middle?: string;
+    }): string;
 }
