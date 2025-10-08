@@ -11,6 +11,8 @@ export const collections = {
   transactions: "transactions",
   payouts: "payouts",
   customers: "customers",
+  inventoryCol: (org: string) => `orgs/${org}/inventory`,
+  balanceLedgerCol: (org: string) => `orgs/${org}/balanceLedger`,
   categories: "categories",
   terminals: "terminals",
   inventory: "inventory", // sub document
