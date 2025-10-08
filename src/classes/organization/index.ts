@@ -1,4 +1,4 @@
-import { BusinessType, DashboardRoles, DocumentSchema } from "../../types";
+import { BusinessType, ChargeTarget, DashboardRoles, DocumentSchema } from "../../types";
 import { Model } from "../model";
 import { generateShortCodeFromName } from '../../utils/system';
 
@@ -48,6 +48,9 @@ export type Organization = {
   settlement: {
     automatic_payouts?: boolean;
   };
+  charges?: {
+    target?: ChargeTarget
+  },
   teamUids?: string[] | null | undefined;
   teamEmails?: string[] | null | undefined;
   roles: { [key: string]: DashboardRoles };

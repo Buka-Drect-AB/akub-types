@@ -55,11 +55,16 @@ export declare const environmentType: {
     live: "live";
     test: "test";
 };
+export declare const chargesDestination: {
+    self: "self";
+    customer: "customer";
+};
 export type PaymentStatus = keyof typeof paymentStatus;
 export type TransactionType = keyof typeof transactionType;
 export type BillingPlans = keyof typeof plans;
 export type BusinessType = keyof typeof businessType;
 export type DashboardRoles = keyof typeof roles;
+export type ChargeTarget = keyof typeof chargesDestination;
 export type StaffRoles = keyof typeof staffRoles;
 export type EnvironmentType = keyof typeof environmentType;
 export type AuthenticationProvider = keyof typeof authProvider;

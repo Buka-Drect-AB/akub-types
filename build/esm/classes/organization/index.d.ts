@@ -1,4 +1,4 @@
-import { BusinessType, DashboardRoles, DocumentSchema } from "../../types";
+import { BusinessType, ChargeTarget, DashboardRoles, DocumentSchema } from "../../types";
 import { Model } from "../model";
 interface BankAccount {
     bank: string;
@@ -41,6 +41,9 @@ export type Organization = {
     accepting_payments?: boolean | null;
     settlement: {
         automatic_payouts?: boolean;
+    };
+    charges?: {
+        target?: ChargeTarget;
     };
     teamUids?: string[] | null | undefined;
     teamEmails?: string[] | null | undefined;
