@@ -27,7 +27,7 @@
     "build:cjs": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "dev": "tsc --watch",
-    "clean": "rm -rf build",
+    "clean": "rimraf -rf build",
     "prebuild": "npm run clean"
   },
   "keywords": [
@@ -50,6 +50,7 @@
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^24.5.2",
+    "rimraf": "^6.0.1",
     "typescript": "^5.0.0"
   },
   "dependencies": {

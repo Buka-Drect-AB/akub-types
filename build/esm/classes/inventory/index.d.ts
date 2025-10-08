@@ -9,6 +9,9 @@ export type Inventory = {
     description?: string;
     image?: string | null;
     name: string;
+    threshold?: {
+        alertAt: number;
+    };
     isAvailable: boolean;
     category: string;
     imageUrl?: string;
