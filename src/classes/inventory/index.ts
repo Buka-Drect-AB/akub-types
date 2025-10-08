@@ -10,9 +10,12 @@ export type Inventory = {
   description?: string;
   image?: string | null;
   name: string;
+  threshold?: {
+    alertAt: number; // when to alert for low stock
+  }; // when to alert for low stock
   isAvailable: boolean;
   category: string; // Free-form user input, normalized as needed
   imageUrl?: string;
 } & DocumentSchema;
 
-export class InventoryItemModel extends Model<Inventory> { }
+export class InventoryItemModel extends Model<Inventory> {}
