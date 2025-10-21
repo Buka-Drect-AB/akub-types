@@ -33,6 +33,7 @@ export declare const staffRoles: {
 };
 export declare const authProvider: {
     readonly email: "Email address";
+    readonly google: "Social authenticator";
     readonly pasby: "pasby e-ID (National Identification Number)";
     readonly pasbyMail: "pasby and email authentication";
 };

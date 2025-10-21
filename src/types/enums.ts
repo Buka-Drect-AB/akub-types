@@ -38,6 +38,7 @@ export const staffRoles = {
 
 export const authProvider = {
   email: "Email address",
+  google: "Social authenticator",
   pasby: "pasby e-ID (National Identification Number)",
   pasbyMail: "pasby and email authentication"
 } as const;
