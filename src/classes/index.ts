@@ -10,3 +10,5 @@ export * from './transaction/index';
 export * from './customer/index';
 export * from './payouts/index';
 export * from './terminal/index';
+export * from './ticketing/index';
+export * from './config/island-pulse';

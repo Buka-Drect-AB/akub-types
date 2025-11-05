@@ -1,3 +1,5 @@
+import { Timing } from "..";
+
 /**
  * Generic function to get enum value by key
  * @param enumObj - The enum object to search in
@@ -56,4 +58,22 @@ export function isValidEnumKey<T extends Record<string, string>>(
 
 export function normalize(text: string): string {
   return text.trim().toLowerCase();
+}
+
+export function getExpirationDate(timing: Timing): Date {
+  const { date, end } = timing;
+
+  // Combine date and end time
+  const dateTimeString = `${date}T${end}:00`;
+
+  // Create a date object
+  let expirationDate = new Date(dateTimeString);
+
+  // If end time is before start time (e.g., 00:00 < 20:00), 
+  // it means it ends the next day
+  if (end < timing.start) {
+    expirationDate.setDate(expirationDate.getDate() + 1);
+  }
+
+  return expirationDate;
 }

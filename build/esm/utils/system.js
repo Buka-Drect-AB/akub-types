@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateShortCodeFromName = generateShortCodeFromName;
 exports.generateStaffShortCode = generateStaffShortCode;
 exports.unixTimeStampNow = unixTimeStampNow;
+exports.normalizeDate = normalizeDate;
 exports.createSlug = createSlug;
 exports.unslug = unslug;
 const nanoid_1 = require("nanoid");
@@ -30,6 +31,15 @@ function generateStaffShortCode(orgShortCode, staffData) {
 function unixTimeStampNow() {
     const now = new Date();
     return Math.floor(now.getTime() / 1000);
+}
+function normalizeDate(input) {
+    if (!input)
+        return new Date(0); // fail-safe
+    if (typeof input === 'number')
+        return new Date(input * 1000);
+    if (typeof input === 'string')
+        return new Date(input);
+    return input;
 }
 function createSlug(name) {
     return name

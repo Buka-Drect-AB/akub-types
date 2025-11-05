@@ -5,6 +5,7 @@ exports.getEnumValueSafe = getEnumValueSafe;
 exports.getEnumValueByString = getEnumValueByString;
 exports.isValidEnumKey = isValidEnumKey;
 exports.normalize = normalize;
+exports.getExpirationDate = getExpirationDate;
 /**
  * Generic function to get enum value by key
  * @param enumObj - The enum object to search in
@@ -46,5 +47,18 @@ function isValidEnumKey(enumObj, key) {
 }
 function normalize(text) {
     return text.trim().toLowerCase();
+}
+function getExpirationDate(timing) {
+    const { date, end } = timing;
+    // Combine date and end time
+    const dateTimeString = `${date}T${end}:00`;
+    // Create a date object
+    let expirationDate = new Date(dateTimeString);
+    // If end time is before start time (e.g., 00:00 < 20:00), 
+    // it means it ends the next day
+    if (end < timing.start) {
+        expirationDate.setDate(expirationDate.getDate() + 1);
+    }
+    return expirationDate;
 }
 //# sourceMappingURL=index.js.map

@@ -10,9 +10,11 @@ exports.collections = {
     accounts: "accounts", // sub document
     subscriptions: "subscriptions",
     payments: "payments",
+    tickets: "tickets",
     ledger: "balanceLedger", // sub document
     transactions: "transactions",
     payouts: "payouts",
+    config: "config",
     customers: "customers",
     inventoryCol: (org) => `orgs/${org}/inventory`,
     balanceLedgerCol: (org) => `orgs/${org}/balanceLedger`,
@@ -45,7 +47,7 @@ exports.businessType = {
     sole: "Sole trader",
 };
 exports.paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded', 'cancelled']);
-exports.transactionType = strEnum(['credit', 'debit']);
+exports.transactionType = strEnum(['credit', 'debit', 'ticketing']);
 exports.environmentType = strEnum(['live', 'test']);
 exports.chargesDestination = strEnum(['self', 'customer']);
 function strEnum(o) {

@@ -7,9 +7,11 @@ export const collections = {
   accounts: "accounts", // sub document
   subscriptions: "subscriptions",
   payments: "payments",
+  tickets: "tickets",
   ledger: "balanceLedger", // sub document
   transactions: "transactions",
   payouts: "payouts",
+  config: "config",
   customers: "customers",
   inventoryCol: (org: string) => `orgs/${org}/inventory`,
   balanceLedgerCol: (org: string) => `orgs/${org}/balanceLedger`,
@@ -49,7 +51,7 @@ export const businessType = {
 } as const;
 
 export const paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded', 'cancelled']);
-export const transactionType = strEnum(['credit', 'debit']);
+export const transactionType = strEnum(['credit', 'debit', 'ticketing']);
 export const environmentType = strEnum(['live', 'test']);
 export const chargesDestination = strEnum(['self', 'customer']);
 

@@ -7,9 +7,11 @@ export declare const collections: {
     readonly accounts: "accounts";
     readonly subscriptions: "subscriptions";
     readonly payments: "payments";
+    readonly tickets: "tickets";
     readonly ledger: "balanceLedger";
     readonly transactions: "transactions";
     readonly payouts: "payouts";
+    readonly config: "config";
     readonly customers: "customers";
     readonly inventoryCol: (org: string) => string;
     readonly balanceLedgerCol: (org: string) => string;
@@ -51,6 +53,7 @@ export declare const paymentStatus: {
 export declare const transactionType: {
     credit: "credit";
     debit: "debit";
+    ticketing: "ticketing";
 };
 export declare const environmentType: {
     live: "live";

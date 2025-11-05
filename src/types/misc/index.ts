@@ -50,6 +50,7 @@ export const BUSINESS_INDUSTRIES: { value: string; label: string }[] = [
 
   // Miscellaneous
   { value: "bookshop", label: "Bookshop" },
+  { value: "waste_management", label: "Waste management" },
   { value: "flower_shop", label: "Flower Shop" },
   { value: "rental_service", label: "Equipment / Party Rentals" },
   { value: "transport_service", label: "Transport / Logistics Service" },
