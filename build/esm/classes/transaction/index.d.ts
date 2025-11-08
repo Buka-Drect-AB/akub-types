@@ -1,4 +1,4 @@
-import { DocumentSchema, PaymentStatus, TransactionType } from "../..";
+import { DocumentSchema, PaymentStatus, PayoutType, TransactionType } from "../..";
 import { Model } from "../model";
 export interface TransactionRelationship {
     balance_after?: number;
@@ -50,6 +50,7 @@ export declare class TransactionModel extends Model<Transaction> {
     static calculateTotal(lineItems: LineItem[]): number;
     static calculateFee(total: number, percentage: number): number;
     static copyWith(transaction: Transaction, updates: Partial<Transaction>): Transaction;
+    static calculateAkubFee(amount: number, payout: PayoutType): number;
 }
 export type BalanceLedgerEntry = {
     orgId: string;

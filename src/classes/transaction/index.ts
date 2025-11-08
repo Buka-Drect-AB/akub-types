@@ -1,4 +1,4 @@
-import { DocumentSchema, PaymentStatus, TransactionType } from "../..";
+import { DocumentSchema, PaymentStatus, PayoutType, TransactionType } from "../..";
 import { Model } from "../model";
 
 export interface TransactionRelationship {
@@ -36,7 +36,7 @@ export type Transaction = {
       last_four: string;
       expiry: string;
     },
-  } 
+  }
   metadata?: {
     line_items?: LineItem[] | null, // Changed to optional and removed undefined as null covers it
     related_to?: string; // if was a retry of an older transaction that failed
@@ -45,7 +45,7 @@ export type Transaction = {
 } & DocumentSchema;
 
 export class TransactionModel extends Model<Transaction> {
-  
+
   public static calculateTotal(lineItems: LineItem[]): number {
     // Validate all items have the same currency if there are multiple items
     if (lineItems.length > 1) {
@@ -73,17 +73,36 @@ export class TransactionModel extends Model<Transaction> {
       ...transaction,
       ...updates,
       // Handle nested objects that need deep merging
-      relationship: updates.relationship 
+      relationship: updates.relationship
         ? { ...transaction.relationship, ...updates.relationship }
         : transaction.relationship,
-      tax: updates.tax 
+      tax: updates.tax
         ? { ...transaction.tax, ...updates.tax }
         : transaction.tax,
-      metadata: updates.metadata 
+      metadata: updates.metadata
         ? { ...transaction.metadata, ...updates.metadata }
         : transaction.metadata,
     };
   }
+
+  static calculateAkubFee(amount: number, payout: PayoutType): number {
+    let percent = 0;
+    const base = 100;
+
+    if (payout === 'standard') {
+      if (amount <= 9999) percent = 0.025;
+      else if (amount <= 499999) percent = 0.03;
+      else if (amount <= 2000000) percent = 0.04;
+      else percent = 0.05;
+    } else {
+      if (amount <= 9999) percent = 0.08;
+      else if (amount <= 499999) percent = 0.09;
+      else percent = 0.10;
+    }
+
+    return base + amount * percent;
+  }
+
 }
 
 export type BalanceLedgerEntry = {

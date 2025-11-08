@@ -54,7 +54,10 @@ export const paymentStatus = strEnum(['paid', 'pending', 'failed', 'refunded', '
 export const transactionType = strEnum(['credit', 'debit', 'ticketing']);
 export const environmentType = strEnum(['live', 'test']);
 export const chargesDestination = strEnum(['self', 'customer']);
+export const payoutType = strEnum(['standard', 'instant']);
 
+
+export type PayoutType = keyof typeof payoutType;
 export type PaymentStatus = keyof typeof paymentStatus;
 export type TransactionType = keyof typeof transactionType;
 export type BillingPlans = keyof typeof plans;

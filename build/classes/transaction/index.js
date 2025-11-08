@@ -31,6 +31,29 @@ class TransactionModel extends model_1.Model {
                 ? Object.assign(Object.assign({}, transaction.tax), updates.tax) : transaction.tax, metadata: updates.metadata
                 ? Object.assign(Object.assign({}, transaction.metadata), updates.metadata) : transaction.metadata });
     }
+    static calculateAkubFee(amount, payout) {
+        let percent = 0;
+        const base = 100;
+        if (payout === 'standard') {
+            if (amount <= 9999)
+                percent = 0.025;
+            else if (amount <= 499999)
+                percent = 0.03;
+            else if (amount <= 2000000)
+                percent = 0.04;
+            else
+                percent = 0.05;
+        }
+        else {
+            if (amount <= 9999)
+                percent = 0.08;
+            else if (amount <= 499999)
+                percent = 0.09;
+            else
+                percent = 0.10;
+        }
+        return base + amount * percent;
+    }
 }
 exports.TransactionModel = TransactionModel;
 /**

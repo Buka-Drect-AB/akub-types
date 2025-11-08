@@ -63,6 +63,11 @@ export declare const chargesDestination: {
     self: "self";
     customer: "customer";
 };
+export declare const payoutType: {
+    standard: "standard";
+    instant: "instant";
+};
+export type PayoutType = keyof typeof payoutType;
 export type PaymentStatus = keyof typeof paymentStatus;
 export type TransactionType = keyof typeof transactionType;
 export type BillingPlans = keyof typeof plans;
