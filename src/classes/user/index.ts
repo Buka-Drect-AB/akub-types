@@ -19,6 +19,7 @@ export type User = {
   photoUrl: string | null | undefined;
   eid?: string;
   phone: string | null | undefined;
+  permission?: "super-admin" | "user",
   banking?: {
     bvn?: {
       value: string;

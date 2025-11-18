@@ -38,6 +38,7 @@ export declare const authProvider: {
     readonly google: "Social authenticator";
     readonly pasby: "pasby e-ID (National Identification Number)";
     readonly pasbyMail: "pasby and email authentication";
+    readonly custom: "Wildcard verifiable authenticator";
 };
 export declare const businessType: {
     readonly llc: "Limited company";

@@ -40,7 +40,8 @@ exports.authProvider = {
     email: "Email address",
     google: "Social authenticator",
     pasby: "pasby e-ID (National Identification Number)",
-    pasbyMail: "pasby and email authentication"
+    pasbyMail: "pasby and email authentication",
+    custom: "Wildcard verifiable authenticator",
 };
 exports.businessType = {
     llc: "Limited company",
