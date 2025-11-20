@@ -17,6 +17,7 @@ exports.collections = {
     config: "config",
     customers: "customers",
     inventoryCol: (org) => `orgs/${org}/inventory`,
+    venueCol: (org) => `orgs/${org}/venues`,
     balanceLedgerCol: (org) => `orgs/${org}/balanceLedger`,
     categories: "categories",
     terminals: "terminals",

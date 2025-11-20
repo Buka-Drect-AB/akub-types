@@ -14,6 +14,7 @@ export const collections = {
   config: "config",
   customers: "customers",
   inventoryCol: (org: string) => `orgs/${org}/inventory`,
+  venueCol: (org: string) => `orgs/${org}/venues`,
   balanceLedgerCol: (org: string) => `orgs/${org}/balanceLedger`,
   categories: "categories",
   terminals: "terminals",

@@ -14,6 +14,7 @@ export declare const collections: {
     readonly config: "config";
     readonly customers: "customers";
     readonly inventoryCol: (org: string) => string;
+    readonly venueCol: (org: string) => string;
     readonly balanceLedgerCol: (org: string) => string;
     readonly categories: "categories";
     readonly terminals: "terminals";
