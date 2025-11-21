@@ -10,6 +10,14 @@ class OrganizationModel extends model_1.Model {
     userRole(uid) {
         return this.schema.roles[uid];
     }
+    calculateFee(amount) {
+        if (this.schema.settlement.mode === 'instant') {
+            return (amount * 5) / 100;
+        }
+        else {
+            return (amount * 1) / 100;
+        }
+    }
 }
 exports.OrganizationModel = OrganizationModel;
 class VenueModel extends model_1.Model {

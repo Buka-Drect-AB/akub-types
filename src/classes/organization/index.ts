@@ -77,6 +77,14 @@ export class OrganizationModel extends Model<Organization> {
   public userRole(uid: string): DashboardRoles | undefined {
     return this.schema.roles[uid];
   }
+
+  public calculateFee(amount: number) {
+    if (this.schema.settlement.mode === 'instant') {
+      return (amount * 5) / 100;
+    } else {
+      return (amount * 1) / 100;
+    }
+  }
 }
 
 

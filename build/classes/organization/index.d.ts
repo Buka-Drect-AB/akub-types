@@ -66,6 +66,7 @@ export type Organization = {
 export declare class OrganizationModel extends Model<Organization> {
     static generateShortCode(name: string): string;
     userRole(uid: string): DashboardRoles | undefined;
+    calculateFee(amount: number): number;
 }
 export type OrgRequest = {
     org: string;
