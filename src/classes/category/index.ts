@@ -24,9 +24,12 @@ export const EMOJI_POOL = [
 
 
 export type Category = {
-  name: string; // e.g., "Cocktails", "Grilled Meat", "Soft Drinks"
+  name: string; // e.g., "Cocktails", "Grilled Meat", "Soft Drinks", "Hair Services"
   icon: string; // could be a URL or an icon key reference (see below)
+  appointmentColor?: string; // hex color for appointment calendar display (e.g., "#3B82F6" for blue)
+  description?: string; // optional description of the category
   createdBy?: string; // optional: userId of business that created it
+  tenantId?: string; // optional: tenant that owns this category
 } & DocumentSchema; // id is slugified or hashed version of name
 
 export class CategoryModel extends Model<Category> {

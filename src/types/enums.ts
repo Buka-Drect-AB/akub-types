@@ -2,6 +2,8 @@ export const collections = {
   users: "users",
   orgs: "orgs",
   staffs: "staffs",
+  tenants: "tenants",
+  appointments: "appointments",
   orgRequests: "orgRequests",
   venues: "venues", // sub document
   accounts: "accounts", // sub document
@@ -17,6 +19,7 @@ export const collections = {
   venueCol: (org: string) => `orgs/${org}/venues`,
   balanceLedgerCol: (org: string) => `orgs/${org}/balanceLedger`,
   categories: "categories",
+  services: "services",
   terminals: "terminals",
   inventory: "inventory", // sub document
 } as const;
@@ -32,12 +35,19 @@ export const roles = {
   admin: "admin",
   supervisor: "supervisor",
   viewer: "viewer",
+  staff: "staff",
 } as const;
 
 export const staffRoles = {
   processor: "Order processor",
   cashier: "Transaction handler",
+  practitioner: "Service provider",
+  assistant: "Assistant",
+  manager: "Manager",
+  frontdesk: "Front desk",
 } as const;
+
+export const staffStatus = strEnum(['active', 'inactive', 'archived']);
 
 export const authProvider = {
   email: "Email address",
@@ -57,18 +67,31 @@ export const transactionType = strEnum(['credit', 'debit', 'ticketing']);
 export const environmentType = strEnum(['live', 'test']);
 export const chargesDestination = strEnum(['self', 'customer']);
 export const payoutType = strEnum(['standard', 'instant']);
+export const pricingPlans = strEnum(['starter', 'professional']);
+export const products = strEnum(['appointments', 'hotels']);
+export const appointmentStatus = strEnum(['pending', 'confirmed', 'checked_in', 'completed', 'cancelled', 'no_show']);
+export const appointmentSource = strEnum(['online', 'manual', 'walk_in']);
+export const appointmentChannel = strEnum(['web', 'mobile', 'assistant']);
+export const appointmentPaymentStatus = strEnum(['unpaid', 'pending', 'authorized', 'paid', 'refunded']);
 
 
+export type ProductType = keyof typeof products;
 export type PayoutType = keyof typeof payoutType;
 export type PaymentStatus = keyof typeof paymentStatus;
 export type TransactionType = keyof typeof transactionType;
 export type BillingPlans = keyof typeof plans;
 export type BusinessType = keyof typeof businessType;
+export type PricingPlanType = keyof typeof pricingPlans;
 export type DashboardRoles = keyof typeof roles;
 export type ChargeTarget= keyof typeof chargesDestination;
 export type StaffRoles = keyof typeof staffRoles;
+export type StaffStatus = keyof typeof staffStatus;
 export type EnvironmentType = keyof typeof environmentType;
 export type AuthenticationProvider = keyof typeof authProvider;
+export type AppointmentStatus = keyof typeof appointmentStatus;
+export type AppointmentSource = keyof typeof appointmentSource;
+export type AppointmentPaymentStatus = keyof typeof appointmentPaymentStatus;
+export type AppointmentChannel = keyof typeof appointmentChannel;
 
 
 function strEnum<T extends string>(o: Array<T>): { [K in T]: K } {

@@ -1,16 +1,40 @@
-import { DocumentSchema, StaffRoles } from "../..";
+import { DocumentSchema, StaffRoles, StaffStatus } from "../..";
 import { Model } from "../model";
+
+export type StaffAvailabilityDay =
+  | 'monday'
+  | 'tuesday'
+  | 'wednesday'
+  | 'thursday'
+  | 'friday'
+  | 'saturday'
+  | 'sunday';
+
+export type StaffAvailabilitySlot = {
+  day: StaffAvailabilityDay;
+  start: string; // HH:mm
+  end: string; // HH:mm
+};
 
 export type Staff = {
   org: string; // org id
+  tenantId?: string; // alias for org when used in appointments product
   createdBy: string; // user id
   whatsapp?: string;
   shortCode: string;
   domain: "test" | "live";
   name: string;
+  email?: string;
+  phone?: string;
   venues: string[]; // venues this inventory apply to
   pin: string;
   role: StaffRoles;
+  status: StaffStatus;
+  services?: string[]; // service IDs staff can perform
+  color?: string; // calendar color
+  bio?: string;
+  hourlyRate?: number;
+  availability?: StaffAvailabilitySlot[];
   imageUrl?: string;
 } & DocumentSchema;
 

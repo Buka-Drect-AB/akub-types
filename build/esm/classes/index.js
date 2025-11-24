@@ -20,11 +20,14 @@ __exportStar(require("./user/index"), exports);
 __exportStar(require("./organization/index"), exports);
 __exportStar(require("./inventory/index"), exports);
 __exportStar(require("./category/index"), exports);
+__exportStar(require("./service/index"), exports);
 __exportStar(require("./staff/index"), exports);
 __exportStar(require("./transaction/index"), exports);
 __exportStar(require("./customer/index"), exports);
 __exportStar(require("./payouts/index"), exports);
 __exportStar(require("./terminal/index"), exports);
 __exportStar(require("./ticketing/index"), exports);
+__exportStar(require("./tenant/index"), exports);
 __exportStar(require("./config/island-pulse"), exports);
+__exportStar(require("./appointment/index"), exports);
 //# sourceMappingURL=index.js.map

@@ -29,3 +29,11 @@ export type reactSelectOptionsType = {
     group: string;
     value: string;
 };
+export type OptionSchema = {
+    label: string;
+    options: {
+        label: string;
+        group?: string;
+        value: string;
+    }[];
+};
