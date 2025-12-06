@@ -28,6 +28,7 @@ __exportStar(require("./payouts/index"), exports);
 __exportStar(require("./terminal/index"), exports);
 __exportStar(require("./ticketing/index"), exports);
 __exportStar(require("./tenant/index"), exports);
+__exportStar(require("./tenant/calendar"), exports);
 __exportStar(require("./config/island-pulse"), exports);
 __exportStar(require("./appointment/index"), exports);
 //# sourceMappingURL=index.js.map

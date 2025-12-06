@@ -69,6 +69,7 @@ export const chargesDestination = strEnum(['self', 'customer']);
 export const payoutType = strEnum(['standard', 'instant']);
 export const pricingPlans = strEnum(['starter', 'professional']);
 export const products = strEnum(['appointments', 'hotels']);
+export const paymentLogicType = strEnum(['percentage', 'fixed']);
 export const appointmentStatus = strEnum(['pending', 'confirmed', 'checked_in', 'completed', 'cancelled', 'no_show']);
 export const appointmentSource = strEnum(['online', 'manual', 'walk_in']);
 export const appointmentChannel = strEnum(['web', 'mobile', 'assistant']);
@@ -76,6 +77,7 @@ export const appointmentPaymentStatus = strEnum(['unpaid', 'pending', 'authorize
 
 
 export type ProductType = keyof typeof products;
+export type PaymentLogicType = keyof typeof paymentLogicType;
 export type PayoutType = keyof typeof payoutType;
 export type PaymentStatus = keyof typeof paymentStatus;
 export type TransactionType = keyof typeof transactionType;

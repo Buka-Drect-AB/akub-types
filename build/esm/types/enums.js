@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.appointmentPaymentStatus = exports.appointmentChannel = exports.appointmentSource = exports.appointmentStatus = exports.products = exports.pricingPlans = exports.payoutType = exports.chargesDestination = exports.environmentType = exports.transactionType = exports.paymentStatus = exports.businessType = exports.authProvider = exports.staffStatus = exports.staffRoles = exports.roles = exports.plans = exports.collections = void 0;
+exports.appointmentPaymentStatus = exports.appointmentChannel = exports.appointmentSource = exports.appointmentStatus = exports.paymentLogicType = exports.products = exports.pricingPlans = exports.payoutType = exports.chargesDestination = exports.environmentType = exports.transactionType = exports.paymentStatus = exports.businessType = exports.authProvider = exports.staffStatus = exports.staffRoles = exports.roles = exports.plans = exports.collections = void 0;
 exports.collections = {
     users: "users",
     orgs: "orgs",
@@ -64,6 +64,7 @@ exports.chargesDestination = strEnum(['self', 'customer']);
 exports.payoutType = strEnum(['standard', 'instant']);
 exports.pricingPlans = strEnum(['starter', 'professional']);
 exports.products = strEnum(['appointments', 'hotels']);
+exports.paymentLogicType = strEnum(['percentage', 'fixed']);
 exports.appointmentStatus = strEnum(['pending', 'confirmed', 'checked_in', 'completed', 'cancelled', 'no_show']);
 exports.appointmentSource = strEnum(['online', 'manual', 'walk_in']);
 exports.appointmentChannel = strEnum(['web', 'mobile', 'assistant']);

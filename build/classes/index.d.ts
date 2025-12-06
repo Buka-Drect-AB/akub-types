@@ -10,5 +10,6 @@ export * from './payouts/index';
 export * from './terminal/index';
 export * from './ticketing/index';
 export * from './tenant/index';
+export * from './tenant/calendar';
 export * from './config/island-pulse';
 export * from './appointment/index';

@@ -1,4 +1,4 @@
-import { BusinessType, DashboardRoles, DocumentSchema, EnvironmentType, PricingPlanType, ProductType } from "../..";
+import { BusinessType, DashboardRoles, DocumentSchema, EnvironmentType, PaymentLogicType, PricingPlanType, ProductType } from "../..";
 import { Model } from "../model";
 
 export interface TenantLimits {
@@ -79,6 +79,11 @@ export type Tenant = {
         close: string;  // "18:00"
       }>;
     };
+    reservationLogic?: {
+      amount: number;
+      type: PaymentLogicType
+    },
+    gallery?: {url: string, position: number}[]
   };
 
   configuration?: {
@@ -94,6 +99,8 @@ export type Tenant = {
   };
 
   incorporationStatus: BusinessType;
+
+  salesActive?: boolean;
 
   incorporation?: {
     legal: string;

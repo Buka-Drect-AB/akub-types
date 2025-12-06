@@ -1,4 +1,4 @@
-import { AppointmentChannel, AppointmentPaymentStatus, AppointmentSource, AppointmentStatus, DocumentSchema, PriceType } from "../..";
+import { AppointmentChannel, AppointmentPaymentStatus, AppointmentSource, AppointmentStatus, DocumentSchema, PaymentLogicType, PriceType } from "../..";
 import { Model } from "../model";
 export type AppointmentCustomer = {
     id?: string;
@@ -67,4 +67,5 @@ export declare class AppointmentModel extends Model<Appointment> {
         metadata?: Record<string, unknown>;
     }): AppointmentModel;
     addTimelineEntry(entry: AppointmentTimelineEntry): void;
+    static reservationAmount(logic: PaymentLogicType, checkout: number): void;
 }

@@ -49,6 +49,7 @@ export declare class ServiceModel extends Model<Service> {
      * Check if service has online booking enabled
      */
     isOnlineBookingEnabled(): boolean;
+    getFormattedAvailability(): "All genders" | "Female only" | "Children only" | "Male only" | "Not specified";
     /**
      * Get formatted price for display
      */

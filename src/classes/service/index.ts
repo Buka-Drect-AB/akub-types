@@ -95,6 +95,24 @@ export class ServiceModel extends Model<Service> {
     return this.schema.onlineBookingEnabled;
   }
 
+  getFormattedAvailability() {
+    const option = this.schema.availableFor;
+
+    switch (option) {
+      case 'all': { 
+        return 'All genders';
+      }
+      case 'female':
+        return 'Female only';
+      case 'kids': 
+        return 'Children only'
+      case 'male':
+        return 'Male only';
+      default:
+        return 'Not specified'
+    } 
+  }
+
   /**
    * Get formatted price for display
    */

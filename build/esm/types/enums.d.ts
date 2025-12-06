@@ -90,6 +90,10 @@ export declare const products: {
     appointments: "appointments";
     hotels: "hotels";
 };
+export declare const paymentLogicType: {
+    percentage: "percentage";
+    fixed: "fixed";
+};
 export declare const appointmentStatus: {
     pending: "pending";
     cancelled: "cancelled";
@@ -116,6 +120,7 @@ export declare const appointmentPaymentStatus: {
     authorized: "authorized";
 };
 export type ProductType = keyof typeof products;
+export type PaymentLogicType = keyof typeof paymentLogicType;
 export type PayoutType = keyof typeof payoutType;
 export type PaymentStatus = keyof typeof paymentStatus;
 export type TransactionType = keyof typeof transactionType;

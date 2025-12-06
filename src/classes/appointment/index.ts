@@ -4,7 +4,9 @@ import {
   AppointmentSource,
   AppointmentStatus,
   DocumentSchema,
+  PaymentLogicType,
   PriceType,
+  Tenant,
 } from "../..";
 import { unixTimeStampNow } from "../../utils/system";
 import { Model } from "../model";
@@ -122,6 +124,12 @@ export class AppointmentModel extends Model<Appointment> {
     }
     this.schema.timeline.push(entry);
     this.schema.updatedAt = unixTimeStampNow();
+  }
+
+  static reservationAmount(logic: PaymentLogicType, checkout: number) {
+    if (logic === 'fixed') {
+      
+    }
   }
 }
 
