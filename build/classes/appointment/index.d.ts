@@ -37,12 +37,14 @@ export type AppointmentTimelineEntry = {
 export type AppointmentTotals = {
     subtotal: number;
     tax?: number;
+    paid?: number;
     discount?: number;
     grandTotal: number;
     currency: string;
 };
 export type Appointment = {
     tenantId: string;
+    reservation?: string | undefined;
     customer: AppointmentCustomer;
     schedule: AppointmentSchedule;
     service: AppointmentServiceSnapshot;

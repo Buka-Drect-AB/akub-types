@@ -1,4 +1,4 @@
-import { AppointmentChannel, AppointmentPaymentStatus, AppointmentSource, AppointmentStatus, DocumentSchema, PriceType } from "../..";
+import { AppointmentChannel, AppointmentPaymentStatus, AppointmentSource, AppointmentStatus, DocumentSchema, PaymentLogicType, PriceType } from "../..";
 import { Model } from "../model";
 export type AppointmentCustomer = {
     id?: string;
@@ -37,12 +37,14 @@ export type AppointmentTimelineEntry = {
 export type AppointmentTotals = {
     subtotal: number;
     tax?: number;
+    paid?: number;
     discount?: number;
     grandTotal: number;
     currency: string;
 };
 export type Appointment = {
     tenantId: string;
+    reservation?: string | undefined;
     customer: AppointmentCustomer;
     schedule: AppointmentSchedule;
     service: AppointmentServiceSnapshot;
@@ -67,4 +69,5 @@ export declare class AppointmentModel extends Model<Appointment> {
         metadata?: Record<string, unknown>;
     }): AppointmentModel;
     addTimelineEntry(entry: AppointmentTimelineEntry): void;
+    static reservationAmount(logic: PaymentLogicType, checkout: number): void;
 }

@@ -6,7 +6,6 @@ import {
   DocumentSchema,
   PaymentLogicType,
   PriceType,
-  Tenant,
 } from "../..";
 import { unixTimeStampNow } from "../../utils/system";
 import { Model } from "../model";
@@ -53,6 +52,7 @@ export type AppointmentTimelineEntry = {
 export type AppointmentTotals = {
   subtotal: number;
   tax?: number;
+  paid?: number;
   discount?: number;
   grandTotal: number;
   currency: string;
@@ -60,6 +60,7 @@ export type AppointmentTotals = {
 
 export type Appointment = {
   tenantId: string;
+  reservation?: string | undefined;
   customer: AppointmentCustomer;
   schedule: AppointmentSchedule;
   service: AppointmentServiceSnapshot;

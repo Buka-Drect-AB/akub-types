@@ -40,6 +40,7 @@ export type Transaction = {
             expiry: string;
         };
     };
+    link_expiration?: Date;
     metadata?: {
         line_items?: LineItem[] | null;
         related_to?: string;

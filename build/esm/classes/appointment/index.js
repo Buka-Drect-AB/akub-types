@@ -39,6 +39,10 @@ class AppointmentModel extends model_1.Model {
         this.schema.timeline.push(entry);
         this.schema.updatedAt = (0, system_1.unixTimeStampNow)();
     }
+    static reservationAmount(logic, checkout) {
+        if (logic === 'fixed') {
+        }
+    }
 }
 exports.AppointmentModel = AppointmentModel;
 //# sourceMappingURL=index.js.map

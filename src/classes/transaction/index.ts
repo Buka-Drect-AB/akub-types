@@ -36,7 +36,8 @@ export type Transaction = {
       last_four: string;
       expiry: string;
     },
-  }
+  };
+  link_expiration?: Date;
   metadata?: {
     line_items?: LineItem[] | null, // Changed to optional and removed undefined as null covers it
     related_to?: string; // if was a retry of an older transaction that failed
