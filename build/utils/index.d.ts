@@ -29,3 +29,4 @@ export declare function getEnumValueByString<T extends Record<string, string>>(e
 export declare function isValidEnumKey<T extends Record<string, string>>(enumObj: T, key: string): key is Extract<keyof T, string>;
 export declare function normalize(text: string): string;
 export declare function getExpirationDate(timing: Timing): Date;
+export declare function addMinutes(startTime: string, duration: number): string;

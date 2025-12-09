@@ -77,3 +77,16 @@ export function getExpirationDate(timing: Timing): Date {
 
   return expirationDate;
 }
+
+export function addMinutes(startTime: string, duration: number) {
+  const [hours, minutes] = startTime.split(":").map(Number);
+  const startDate = new Date();
+  startDate.setHours(hours);
+  startDate.setMinutes(minutes);
+  startDate.setSeconds(0);
+  startDate.setMilliseconds(0);
+  startDate.setMinutes(startDate.getMinutes() + duration);
+  const endHours = String(startDate.getHours()).padStart(2, "0");
+  const endMinutes = String(startDate.getMinutes()).padStart(2, "0");
+  return `${endHours}:${endMinutes}`;
+}

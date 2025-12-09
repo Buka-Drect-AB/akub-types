@@ -4,6 +4,7 @@ export const collections = {
   staffs: "staffs",
   tenants: "tenants",
   appointments: "appointments",
+  reservations: "reservations",
   orgRequests: "orgRequests",
   venues: "venues", // sub document
   accounts: "accounts", // sub document

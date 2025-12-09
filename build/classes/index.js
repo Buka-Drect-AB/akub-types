@@ -32,5 +32,5 @@ __exportStar(require("./tenant/calendar"), exports);
 __exportStar(require("./config/island-pulse"), exports);
 __exportStar(require("./appointment/index"), exports);
 __exportStar(require("./appointment/booking"), exports);
-__exportStar(require("./appointment/booking"), exports);
+__exportStar(require("./appointment/reservations"), exports);
 //# sourceMappingURL=index.js.map

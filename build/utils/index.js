@@ -6,6 +6,7 @@ exports.getEnumValueByString = getEnumValueByString;
 exports.isValidEnumKey = isValidEnumKey;
 exports.normalize = normalize;
 exports.getExpirationDate = getExpirationDate;
+exports.addMinutes = addMinutes;
 /**
  * Generic function to get enum value by key
  * @param enumObj - The enum object to search in
@@ -60,5 +61,17 @@ function getExpirationDate(timing) {
         expirationDate.setDate(expirationDate.getDate() + 1);
     }
     return expirationDate;
+}
+function addMinutes(startTime, duration) {
+    const [hours, minutes] = startTime.split(":").map(Number);
+    const startDate = new Date();
+    startDate.setHours(hours);
+    startDate.setMinutes(minutes);
+    startDate.setSeconds(0);
+    startDate.setMilliseconds(0);
+    startDate.setMinutes(startDate.getMinutes() + duration);
+    const endHours = String(startDate.getHours()).padStart(2, "0");
+    const endMinutes = String(startDate.getMinutes()).padStart(2, "0");
+    return `${endHours}:${endMinutes}`;
 }
 //# sourceMappingURL=index.js.map

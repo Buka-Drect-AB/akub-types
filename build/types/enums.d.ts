@@ -4,6 +4,7 @@ export declare const collections: {
     readonly staffs: "staffs";
     readonly tenants: "tenants";
     readonly appointments: "appointments";
+    readonly reservations: "reservations";
     readonly orgRequests: "orgRequests";
     readonly venues: "venues";
     readonly accounts: "accounts";

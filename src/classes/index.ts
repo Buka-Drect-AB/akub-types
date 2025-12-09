@@ -17,4 +17,4 @@ export * from './tenant/calendar';
 export * from './config/island-pulse';
 export * from './appointment/index';
 export * from './appointment/booking';
-export * from './appointment/booking';
+export * from './appointment/reservations';

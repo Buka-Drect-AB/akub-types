@@ -1,7 +1,8 @@
-import { AppointmentSource, AppointmentStatus, DocumentSchema } from "../..";
+import { AppointmentPaymentStatus, AppointmentSource, DocumentSchema, EnvironmentType } from "../..";
 import { Model } from "../model";
 export type Reservation = {
     tenant: string;
+    domain: EnvironmentType;
     reservation: {
         paid: number;
         total: number;
@@ -13,14 +14,15 @@ export type Reservation = {
         phone: string;
     };
     services: Array<{
-        id: string;
         service: string;
         pricingOptionIndex: number;
         quantity: number;
     }>;
+    currency: string;
     source: AppointmentSource;
+    notes?: string;
     trxID: string;
-    status: AppointmentStatus;
+    status: AppointmentPaymentStatus;
     details: {
         date: string;
         time: string;
