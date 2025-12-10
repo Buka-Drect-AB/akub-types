@@ -51,6 +51,7 @@ export type Tenant = {
     status: 'active' | 'trial' | 'suspended' | 'cancelled';
     owner: string;
     product: ProductType;
+    domain: EnvironmentType;
     appointments?: {
         services?: string[];
         location?: [string, string, string];

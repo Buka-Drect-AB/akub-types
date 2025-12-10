@@ -69,6 +69,8 @@ export type Tenant = {
 
   product: ProductType;
 
+  domain: EnvironmentType;
+
   appointments?: {
     services?: string[];
     location?: [string, string, string];
