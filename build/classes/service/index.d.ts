@@ -7,6 +7,7 @@ export type PricingOption = {
     priceType: PriceType;
     price?: number;
     currency?: string;
+    availableFor?: ServiceAvailability;
 };
 export type ServiceNotificationSettings = {
     rebookReminder?: {
@@ -26,6 +27,7 @@ export type Service = {
     description?: string;
     tenantId: string;
     onlineBookingEnabled: boolean;
+    /** @deprecated use pricingOptions[].availableFor */
     availableFor?: ServiceAvailability;
     pricingOptions: PricingOption[];
     notificationSettings?: ServiceNotificationSettings;
@@ -49,7 +51,7 @@ export declare class ServiceModel extends Model<Service> {
      * Check if service has online booking enabled
      */
     isOnlineBookingEnabled(): boolean;
-    getFormattedAvailability(): "All genders" | "Female only" | "Children only" | "Male only" | "Not specified";
+    getFormattedAvailability(optionIndex?: number): "All genders" | "Female only" | "Children only" | "Male only" | "Not specified";
     /**
      * Get formatted price for display
      */

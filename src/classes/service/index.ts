@@ -11,6 +11,7 @@ export type PricingOption = {
   priceType: PriceType;
   price?: number; // required if priceType is 'fixed' or 'from'
   currency?: string; // e.g., 'NGN', 'SEK'
+  availableFor?: ServiceAvailability;
 };
 
 export type ServiceNotificationSettings = {
@@ -34,7 +35,8 @@ export type Service = {
   description?: string;
   tenantId: string; // reference to tenant
   onlineBookingEnabled: boolean;
-  availableFor?: ServiceAvailability; // Required when onlineBookingEnabled is true
+  /** @deprecated use pricingOptions[].availableFor */
+  availableFor?: ServiceAvailability;
   pricingOptions: PricingOption[];
   notificationSettings?: ServiceNotificationSettings;
   salesSettings?: ServiceSalesSettings;
@@ -56,6 +58,26 @@ export class ServiceModel extends Model<Service> {
       salesSettings?: ServiceSalesSettings;
     }
   ): ServiceModel {
+    const pricingOptions = options?.pricingOptions ?? [
+      {
+        duration: 30,
+        id: randomUUID(),
+        priceType: 'fixed',
+        price: 0,
+        currency: 'NGN',
+        availableFor: options?.availableFor ?? 'all',
+      },
+    ];
+
+    // If availableFor is provided in options, ensure it's applied to pricing options that don't have it
+    if (options?.availableFor) {
+      pricingOptions.forEach(opt => {
+        if (!opt.availableFor) {
+          opt.availableFor = options.availableFor;
+        }
+      });
+    }
+
     return ServiceModel.fromJson({
       id: `service_${createSlug(name)}_${unixTimeStampNow()}`,
       name,
@@ -64,16 +86,7 @@ export class ServiceModel extends Model<Service> {
       createdBy: creator,
       description: options?.description,
       onlineBookingEnabled: options?.onlineBookingEnabled ?? true,
-      availableFor: options?.availableFor,
-      pricingOptions: options?.pricingOptions ?? [
-        {
-          duration: 30,
-          id: randomUUID(),
-          priceType: 'fixed',
-          price: 0,
-          currency: 'NGN',
-        },
-      ],
+      pricingOptions,
       notificationSettings: options?.notificationSettings,
       salesSettings: options?.salesSettings,
       iat: unixTimeStampNow(),
@@ -95,8 +108,9 @@ export class ServiceModel extends Model<Service> {
     return this.schema.onlineBookingEnabled;
   }
 
-  getFormattedAvailability() {
-    const option = this.schema.availableFor;
+  getFormattedAvailability(optionIndex: number = 0) {
+    const pricingOption = this.schema.pricingOptions[optionIndex];
+    const option = pricingOption?.availableFor ?? this.schema.availableFor ?? 'all';
 
     switch (option) {
       case 'all': { 

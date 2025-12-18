@@ -6,7 +6,25 @@ const system_1 = require("../../utils/system");
 const model_1 = require("../model");
 class ServiceModel extends model_1.Model {
     static generate(name, categoryId, tenantId, creator, options) {
-        var _a, _b;
+        var _a, _b, _c;
+        const pricingOptions = (_a = options === null || options === void 0 ? void 0 : options.pricingOptions) !== null && _a !== void 0 ? _a : [
+            {
+                duration: 30,
+                id: (0, crypto_1.randomUUID)(),
+                priceType: 'fixed',
+                price: 0,
+                currency: 'NGN',
+                availableFor: (_b = options === null || options === void 0 ? void 0 : options.availableFor) !== null && _b !== void 0 ? _b : 'all',
+            },
+        ];
+        // If availableFor is provided in options, ensure it's applied to pricing options that don't have it
+        if (options === null || options === void 0 ? void 0 : options.availableFor) {
+            pricingOptions.forEach(opt => {
+                if (!opt.availableFor) {
+                    opt.availableFor = options.availableFor;
+                }
+            });
+        }
         return ServiceModel.fromJson({
             id: `service_${(0, system_1.createSlug)(name)}_${(0, system_1.unixTimeStampNow)()}`,
             name,
@@ -14,17 +32,8 @@ class ServiceModel extends model_1.Model {
             tenantId,
             createdBy: creator,
             description: options === null || options === void 0 ? void 0 : options.description,
-            onlineBookingEnabled: (_a = options === null || options === void 0 ? void 0 : options.onlineBookingEnabled) !== null && _a !== void 0 ? _a : true,
-            availableFor: options === null || options === void 0 ? void 0 : options.availableFor,
-            pricingOptions: (_b = options === null || options === void 0 ? void 0 : options.pricingOptions) !== null && _b !== void 0 ? _b : [
-                {
-                    duration: 30,
-                    id: (0, crypto_1.randomUUID)(),
-                    priceType: 'fixed',
-                    price: 0,
-                    currency: 'NGN',
-                },
-            ],
+            onlineBookingEnabled: (_c = options === null || options === void 0 ? void 0 : options.onlineBookingEnabled) !== null && _c !== void 0 ? _c : true,
+            pricingOptions,
             notificationSettings: options === null || options === void 0 ? void 0 : options.notificationSettings,
             salesSettings: options === null || options === void 0 ? void 0 : options.salesSettings,
             iat: (0, system_1.unixTimeStampNow)(),
@@ -43,8 +52,10 @@ class ServiceModel extends model_1.Model {
     isOnlineBookingEnabled() {
         return this.schema.onlineBookingEnabled;
     }
-    getFormattedAvailability() {
-        const option = this.schema.availableFor;
+    getFormattedAvailability(optionIndex = 0) {
+        var _a, _b;
+        const pricingOption = this.schema.pricingOptions[optionIndex];
+        const option = (_b = (_a = pricingOption === null || pricingOption === void 0 ? void 0 : pricingOption.availableFor) !== null && _a !== void 0 ? _a : this.schema.availableFor) !== null && _b !== void 0 ? _b : 'all';
         switch (option) {
             case 'all': {
                 return 'All genders';
