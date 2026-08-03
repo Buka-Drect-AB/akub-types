@@ -1,5 +1,6 @@
 import { Tenant, TenantModel } from './';
 import { Appointment, AppointmentSchedule } from '..';
+import { BookingTenantExtension } from './bookings';
 
 // Types for calendar management
 export interface TimeSlot {
@@ -28,6 +29,11 @@ export class TenantCalendarManager {
   constructor(tenant: TenantModel, appointments: Appointment[] = []) {
     this.tenant = tenant;
     this.appointments = appointments;
+  }
+
+  private get bookingAppointments() {
+    return (this.tenant.schema as Tenant & { booking?: BookingTenantExtension })
+      .booking?.appointments;
   }
 
   /**
@@ -85,7 +91,7 @@ export class TenantCalendarManager {
    * Get business hours for a specific date
    */
   private getBusinessHoursForDate(date: Date): Array<{ open: Date; close: Date }> {
-    const hours = this.tenant.schema.appointments?.hours;
+    const hours = this.bookingAppointments?.hours;
     if (!hours) return [];
 
     const dayName = this.getDayName(date);
@@ -93,7 +99,7 @@ export class TenantCalendarManager {
 
     if (!dayHours || dayHours.length === 0) return [];
 
-    return dayHours.map(slot => ({
+    return dayHours.map((slot) => ({
       open: this.parseTimeOnDate(date, slot.open),
       close: this.parseTimeOnDate(date, slot.close)
     }));
@@ -103,7 +109,7 @@ export class TenantCalendarManager {
    * Check if tenant is currently open
    */
   public checkAvailability(checkTime: Date = new Date()): AvailabilityResult {
-    const hours = this.tenant.schema.appointments?.hours;
+    const hours = this.bookingAppointments?.hours;
 
     if (!hours) {
       return {
@@ -163,7 +169,7 @@ export class TenantCalendarManager {
     }
 
     // Between slots (e.g., lunch break)
-    const nextSlot = businessHours.find(slot => checkTime < slot.open);
+    const nextSlot = businessHours.find((slot) => checkTime < slot.open);
     if (nextSlot) {
       return {
         isOpen: false,
@@ -324,7 +330,7 @@ export class TenantCalendarManager {
    * Get the business week schedule
    */
   public getWeekSchedule(): Record<string, string> {
-    const hours = this.tenant.schema.appointments?.hours;
+    const hours = this.bookingAppointments?.hours;
     if (!hours) return {};
 
     const schedule: Record<string, string> = {};
@@ -336,7 +342,7 @@ export class TenantCalendarManager {
         schedule[day] = 'Closed';
       } else {
         schedule[day] = dayHours
-          .map(slot => `${slot.open} - ${slot.close}`)
+          .map((slot) => `${slot.open} - ${slot.close}`)
           .join(', ');
       }
     }
@@ -451,7 +457,7 @@ export class TenantCalendarManager {
   const dayOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][date.getDay()];
   
   // Get opening hours for this day
-  const dayHours = this.tenant.schema.appointments?.hours?.[dayOfWeek] || [];
+  const dayHours = this.bookingAppointments?.hours?.[dayOfWeek] || [];
   
   if (!dayHours || dayHours.length === 0) {
     // If no hours defined for this day, return empty array (closed)

@@ -15,6 +15,7 @@ class AppointmentModel extends model_1.Model {
             service,
             totals,
             notes: options === null || options === void 0 ? void 0 : options.notes,
+            reservation: options === null || options === void 0 ? void 0 : options.reservation,
             status: (_a = options === null || options === void 0 ? void 0 : options.status) !== null && _a !== void 0 ? _a : 'pending',
             paymentStatus: (_b = options === null || options === void 0 ? void 0 : options.paymentStatus) !== null && _b !== void 0 ? _b : 'unpaid',
             channel: (_c = options === null || options === void 0 ? void 0 : options.channel) !== null && _c !== void 0 ? _c : 'web',

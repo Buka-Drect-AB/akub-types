@@ -65,6 +65,7 @@ export declare class AppointmentModel extends Model<Appointment> {
         status?: AppointmentStatus;
         paymentStatus?: AppointmentPaymentStatus;
         notes?: string;
+        reservation?: string;
         assignments?: AppointmentStaffAssignment[];
         metadata?: Record<string, unknown>;
     }): AppointmentModel;

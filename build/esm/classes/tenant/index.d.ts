@@ -1,4 +1,4 @@
-import { BusinessType, DashboardRoles, DocumentSchema, EnvironmentType, PaymentLogicType, PricingPlanType, ProductType } from "../..";
+import { BusinessType, DashboardRoles, DocumentSchema, EnvironmentType, PricingPlanType, ProductType } from "../..";
 import { Model } from "../model";
 export interface TenantLimits {
     members: number;
@@ -11,6 +11,12 @@ export interface TenantBilling {
     priceId?: string;
     domain?: EnvironmentType;
     trialEnds?: number;
+    /** Unix timestamp when the one-time setup fee was marked paid (offline ops). */
+    setupFeePaidAt?: number;
+    /** Invoice / bank transfer reference for the setup fee. */
+    setupFeeReference?: string;
+    setupFeeAmount?: number;
+    setupFeeCurrency?: string;
 }
 export interface TenantSettings {
     features: string[];
@@ -52,25 +58,6 @@ export type Tenant = {
     owner: string;
     product: ProductType;
     domain: EnvironmentType;
-    appointments?: {
-        services?: string[];
-        location?: [string, string, string];
-        about?: string;
-        hours?: {
-            [day: string]: Array<{
-                open: string;
-                close: string;
-            }>;
-        };
-        reservationLogic?: {
-            amount: number;
-            type: PaymentLogicType;
-        };
-        gallery?: {
-            url: string;
-            position: number;
-        }[];
-    };
     configuration?: {
         domain: string;
         verified: boolean;

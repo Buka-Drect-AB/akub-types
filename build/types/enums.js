@@ -9,6 +9,8 @@ exports.collections = {
     appointments: "appointments",
     reservations: "reservations",
     orgRequests: "orgRequests",
+    /** Platform operators allowed to run assisted SaaS setup / handoff. Doc id = uid. */
+    platformAdmins: "platform_admins",
     venues: "venues", // sub document
     accounts: "accounts", // sub document
     subscriptions: "subscriptions",

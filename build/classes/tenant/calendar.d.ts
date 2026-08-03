@@ -20,6 +20,7 @@ export declare class TenantCalendarManager {
     private tenant;
     private appointments;
     constructor(tenant: TenantModel, appointments?: Appointment[]);
+    private get bookingAppointments();
     /**
      * Convert AppointmentSchedule to TimeSlot with proper date handling
      */

@@ -1,80 +1,38 @@
-import { AuthenticationProvider } from "../..";
+import { DocumentSchema } from "../..";
 import { Model } from "../model";
 
-export type User = {
-  joined: Date | null | string | number;
-  lastSeen?: Date | null | string | number;
-  id: string;
-  naming: {
-    first: string;
-    last: string;
-    middle?: string;
-  },
-  isNewUser: boolean;
+export type AuthProviderKind = "pasby" | "google" | "email" | "custom";
+
+export type User = DocumentSchema & {
   email: string;
-  roles: {
-    client?: boolean | null;
-    consumer?: boolean | null;
-  },
-  photoUrl: string | null | undefined;
+  naming: { first: string; last: string; middle?: string };
+  photoUrl?: string | null | undefined;
   eid?: string;
-  phone: string | null | undefined;
-  permission?: "super-admin" | "user",
-  banking?: {
-    bvn?: {
-      value: string;
-      hint: string;
-    };
-  },
+  phone?: string | null | undefined;
   security: {
     emailVerified: boolean;
     phoneVerified: boolean;
-    authProvider: AuthenticationProvider;
-  },
-}
+    authProvider: AuthProviderKind[];
+  };
+};
 
 export class UserModel extends Model<User> {
-
-  public get accountIsValid(): boolean {
-    return this.data.naming.first.length > 1 && this.data.naming.last.length > 1;
+  get fullname(): string {
+    const { first, last } = this.schema.naming;
+    return [first, last].filter(Boolean).join(" ").trim() || this.data.email;
   }
 
-  public get fullname(): string {
-    const naming = this.data.naming;
-    // Handle null/undefined input
-    if (!naming) {
-      return '';
-    }
-
-    // Trim whitespace and handle empty strings
-    const firstName = naming.first?.trim() || '';
-    const lastName = naming.last?.trim() || '';
-
-    // If both are empty, return empty string
-    if (!firstName && !lastName) {
-      return '';
-    }
-
-    // If only first name exists
-    if (firstName && !lastName) {
-      return firstName;
-    }
-
-    // If only last name exists
-    if (!firstName && lastName) {
-      return lastName;
-    }
-
-    // Both names exist
-    return `${firstName} ${lastName}`;
+  get accountIsValid(): boolean {
+    return (
+      this.data.naming.first.length > 1 && this.data.naming.last.length > 1
+    );
   }
 
-  public static createFullName(name: {
+  static createFullName(name: {
     first: string;
     last: string;
     middle?: string;
   }): string {
-    return `${name.first}${name.middle ? ` ${name.middle}` : ''} ${name.last}`;
+    return `${name.first}${name.middle ? ` ${name.middle}` : ""} ${name.last}`;
   }
 }
- 

@@ -1,4 +1,4 @@
-import { BusinessType, DashboardRoles, DocumentSchema, EnvironmentType, PaymentLogicType, PricingPlanType, ProductType } from "../..";
+import { BusinessType, DashboardRoles, DocumentSchema, EnvironmentType, PricingPlanType, ProductType } from "../..";
 import { Model } from "../model";
 
 export interface TenantLimits {
@@ -13,6 +13,12 @@ export interface TenantBilling {
   priceId?: string; // Stripe price ID
   domain?: EnvironmentType;
   trialEnds?: number;
+  /** Unix timestamp when the one-time setup fee was marked paid (offline ops). */
+  setupFeePaidAt?: number;
+  /** Invoice / bank transfer reference for the setup fee. */
+  setupFeeReference?: string;
+  setupFeeAmount?: number;
+  setupFeeCurrency?: string;
 }
 
 export interface TenantSettings {
@@ -70,23 +76,6 @@ export type Tenant = {
   product: ProductType;
 
   domain: EnvironmentType;
-
-  appointments?: {
-    services?: string[];
-    location?: [string, string, string];
-    about?: string;
-    hours?: {
-      [day: string]: Array<{
-        open: string;   // "09:00"
-        close: string;  // "18:00"
-      }>;
-    };
-    reservationLogic?: {
-      amount: number;
-      type: PaymentLogicType
-    },
-    gallery?: {url: string, position: number}[]
-  };
 
   configuration?: {
     domain: string;

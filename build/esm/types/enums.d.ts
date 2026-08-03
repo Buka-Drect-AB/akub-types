@@ -6,6 +6,8 @@ export declare const collections: {
     readonly appointments: "appointments";
     readonly reservations: "reservations";
     readonly orgRequests: "orgRequests";
+    /** Platform operators allowed to run assisted SaaS setup / handoff. Doc id = uid. */
+    readonly platformAdmins: "platform_admins";
     readonly venues: "venues";
     readonly accounts: "accounts";
     readonly subscriptions: "subscriptions";

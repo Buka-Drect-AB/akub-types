@@ -37,3 +37,9 @@ export type OptionSchema = {
         value: string;
     }[];
 };
+export interface Timing {
+    date: string;
+    start: string;
+    end: string;
+    timezone: string;
+}

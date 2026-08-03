@@ -1,13 +1,8 @@
 import { Model } from "../model";
+import { Timing } from "../..";
 export interface CoverImagePosition {
     x: number;
     y: number;
-}
-export interface Timing {
-    date: string;
-    start: string;
-    end: string;
-    timezone: string;
 }
 export type IslandPulseConfig = {
     id: string;

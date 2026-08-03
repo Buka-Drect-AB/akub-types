@@ -88,6 +88,7 @@ export class AppointmentModel extends Model<Appointment> {
       status?: AppointmentStatus;
       paymentStatus?: AppointmentPaymentStatus;
       notes?: string;
+      reservation?: string;
       assignments?: AppointmentStaffAssignment[];
       metadata?: Record<string, unknown>;
     }
@@ -101,6 +102,7 @@ export class AppointmentModel extends Model<Appointment> {
       service,
       totals,
       notes: options?.notes,
+      reservation: options?.reservation,
       status: options?.status ?? 'pending',
       paymentStatus: options?.paymentStatus ?? 'unpaid',
       channel: options?.channel ?? 'web',

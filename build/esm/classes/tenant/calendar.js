@@ -6,6 +6,11 @@ class TenantCalendarManager {
         this.tenant = tenant;
         this.appointments = appointments;
     }
+    get bookingAppointments() {
+        var _a;
+        return (_a = this.tenant.schema
+            .booking) === null || _a === void 0 ? void 0 : _a.appointments;
+    }
     /**
      * Convert AppointmentSchedule to TimeSlot with proper date handling
      */
@@ -52,14 +57,14 @@ class TenantCalendarManager {
      */
     getBusinessHoursForDate(date) {
         var _a;
-        const hours = (_a = this.tenant.schema.appointments) === null || _a === void 0 ? void 0 : _a.hours;
+        const hours = (_a = this.bookingAppointments) === null || _a === void 0 ? void 0 : _a.hours;
         if (!hours)
             return [];
         const dayName = this.getDayName(date);
         const dayHours = hours[dayName];
         if (!dayHours || dayHours.length === 0)
             return [];
-        return dayHours.map(slot => ({
+        return dayHours.map((slot) => ({
             open: this.parseTimeOnDate(date, slot.open),
             close: this.parseTimeOnDate(date, slot.close)
         }));
@@ -69,7 +74,7 @@ class TenantCalendarManager {
      */
     checkAvailability(checkTime = new Date()) {
         var _a;
-        const hours = (_a = this.tenant.schema.appointments) === null || _a === void 0 ? void 0 : _a.hours;
+        const hours = (_a = this.bookingAppointments) === null || _a === void 0 ? void 0 : _a.hours;
         if (!hours) {
             return {
                 isOpen: false,
@@ -121,7 +126,7 @@ class TenantCalendarManager {
             };
         }
         // Between slots (e.g., lunch break)
-        const nextSlot = businessHours.find(slot => checkTime < slot.open);
+        const nextSlot = businessHours.find((slot) => checkTime < slot.open);
         if (nextSlot) {
             return {
                 isOpen: false,
@@ -248,7 +253,7 @@ class TenantCalendarManager {
      */
     getWeekSchedule() {
         var _a;
-        const hours = (_a = this.tenant.schema.appointments) === null || _a === void 0 ? void 0 : _a.hours;
+        const hours = (_a = this.bookingAppointments) === null || _a === void 0 ? void 0 : _a.hours;
         if (!hours)
             return {};
         const schedule = {};
@@ -260,7 +265,7 @@ class TenantCalendarManager {
             }
             else {
                 schedule[day] = dayHours
-                    .map(slot => `${slot.open} - ${slot.close}`)
+                    .map((slot) => `${slot.open} - ${slot.close}`)
                     .join(', ');
             }
         }
@@ -351,7 +356,7 @@ class TenantCalendarManager {
         // Get the day of week for the selected date (0 = Sunday, 1 = Monday, etc.)
         const dayOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][date.getDay()];
         // Get opening hours for this day
-        const dayHours = ((_b = (_a = this.tenant.schema.appointments) === null || _a === void 0 ? void 0 : _a.hours) === null || _b === void 0 ? void 0 : _b[dayOfWeek]) || [];
+        const dayHours = ((_b = (_a = this.bookingAppointments) === null || _a === void 0 ? void 0 : _a.hours) === null || _b === void 0 ? void 0 : _b[dayOfWeek]) || [];
         if (!dayHours || dayHours.length === 0) {
             // If no hours defined for this day, return empty array (closed)
             return [];

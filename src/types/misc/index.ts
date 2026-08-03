@@ -57,7 +57,6 @@ export const BUSINESS_INDUSTRIES: { value: string; label: string }[] = [
   { value: "mobile_vendor", label: "Mobile Vendor / Street Seller" },
 ];
 
-
 export interface Authorization {
   customer: {
     test?: string;
@@ -68,26 +67,26 @@ export interface Authorization {
     channel: string;
     brand: string;
     country_code: string;
-    exp_month: string
+    exp_month: string;
     exp_year: string;
     last4: string;
-    reusable: boolean
-  },
+    reusable: boolean;
+  };
   keep: string; // authorization code which we will encrypt
 }
 
-export type  DocumentSchema = {
+export type DocumentSchema = {
   id: string; // Unique identifier
   // Metadata
   iat: Date | null | string | number;
   updatedAt?: Date | null | string | number; // Timestamp for last update
-}
+};
 
 export type reactSelectOptionsType = {
   label: string;
   group: string;
   value: string;
-}
+};
 
 export type OptionSchema = {
   label: string;
@@ -97,3 +96,10 @@ export type OptionSchema = {
     value: string;
   }[];
 };
+
+export interface Timing {
+  date: string;
+  start: string;
+  end: string;
+  timezone: string;
+}

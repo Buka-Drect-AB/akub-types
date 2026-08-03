@@ -1,16 +1,10 @@
 import { Model } from "../model";
 import { createSlug, normalizeDate } from "../../utils/system";
+import { Timing } from "../..";
 
 export interface CoverImagePosition {
   x: number; // Percentage from left (0-100)
   y: number; // Percentage from top (0-100)
-}
-
-export interface Timing {
-  date: string;
-  start: string;
-  end: string;
-  timezone: string;
 }
 
 export type IslandPulseConfig = {
