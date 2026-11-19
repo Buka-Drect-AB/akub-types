@@ -29,6 +29,11 @@ function parseModuleEntitlement(raw) {
     }
     if (d.plan_type != null)
         entitlement.plan_type = String(d.plan_type);
+    if (d.billing_period === "monthly" ||
+        d.billing_period === "quarterly" ||
+        d.billing_period === "yearly") {
+        entitlement.billing_period = d.billing_period;
+    }
     if (d.limits && typeof d.limits === "object") {
         entitlement.limits = d.limits;
     }
