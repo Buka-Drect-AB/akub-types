@@ -1,0 +1,1 @@
+{"version":3,"file":"table.js","sourceRoot":"","sources":["../../src/space/table.ts"],"names":[],"mappings":";AAAA;;;GAGG;;;AAkKH,sDAAsD;AACzC,QAAA,gBAAgB,GAAG;IAC9B,OAAO,EAAE,SAAS;IAClB,MAAM,EAAE,QAAQ;IAChB,cAAc,EAAE,gBAAgB;IAChC,SAAS,EAAE,WAAW;IACtB,WAAW,EAAE,aAAa;IAC1B,aAAa,EAAE,eAAe;IAC9B,MAAM,EAAE,QAAQ;IAChB,eAAe,EAAE,iBAAiB;IAClC,cAAc,EAAE,gBAAgB;CACxB,CAAC"}

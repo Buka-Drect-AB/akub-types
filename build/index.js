@@ -22,4 +22,6 @@ __exportStar(require("./utils"), exports);
 __exportStar(require("./utils/naming-func"), exports);
 // Export classes
 __exportStar(require("./classes"), exports);
+// Akub satellite space / module contract (default DB + named module DBs)
+__exportStar(require("./space"), exports);
 //# sourceMappingURL=index.js.map
