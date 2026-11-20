@@ -9,8 +9,11 @@ exports.tableCollections = void 0;
 exports.tableCollections = {
     members: "members",
     venues: "venues",
+    menus: "menus",
     menuCategories: "menuCategories",
     menuItems: "menuItems",
+    modifierGroups: "modifierGroups",
+    menuImports: "menuImports",
     floorTables: "floorTables",
     tableSessions: "tableSessions",
     orders: "orders",

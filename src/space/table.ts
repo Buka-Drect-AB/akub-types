@@ -35,12 +35,71 @@ export type TableVenue = {
   updatedAt?: number;
 };
 
-export type MenuCategory = {
+export type MenuStatus = "draft" | "published" | "archived";
+
+export type Menu = {
   id: string;
   space_id: string;
   venue_id: string;
   name: string;
+  description?: string;
+  status: MenuStatus;
+  /** ISO currency; prices are major units (e.g. naira). */
+  currency: string;
   sort_order?: number;
+  iat: number;
+  updatedAt?: number;
+};
+
+export type MenuAccompaniment = {
+  name: string;
+  /** Absolute price when the accompaniment is priced on its own. */
+  price: number | null;
+  required?: boolean;
+};
+
+export type MenuInclusion = {
+  name: string;
+  quantity?: string;
+};
+
+export type MenuCategory = {
+  id: string;
+  space_id: string;
+  venue_id: string;
+  menu_id: string;
+  name: string;
+  /** Section note printed under the heading. */
+  note?: string;
+  sort_order?: number;
+  iat: number;
+  updatedAt?: number;
+};
+
+export type ItemVariant = {
+  id: string;
+  name: string;
+  /** Major units. Null when not yet priced. */
+  price: number | null;
+  available?: boolean;
+};
+
+export type Modifier = {
+  id: string;
+  name: string;
+  /** Added to the item price. Null when unknown. */
+  price_delta: number | null;
+};
+
+export type ModifierGroup = {
+  id: string;
+  space_id: string;
+  venue_id: string;
+  name: string;
+  required: boolean;
+  min_select: number;
+  max_select: number;
+  modifiers: Modifier[];
   iat: number;
   updatedAt?: number;
 };
@@ -49,14 +108,27 @@ export type MenuItem = {
   id: string;
   space_id: string;
   venue_id: string;
+  menu_id: string;
   category_id: string;
   name: string;
   description?: string;
+  /** Major units. Draft imports may be 0 until a price is confirmed. */
   price: number;
+  /** True when price was not confidently known (import review). */
+  price_unconfirmed?: boolean;
   currency?: string;
   image_url?: string | null;
   available: boolean;
-  variants?: Record<string, unknown>[];
+  variants?: ItemVariant[];
+  modifier_group_ids?: string[];
+  /** Portion as printed, e.g. "3 pcs". */
+  portion?: string;
+  /** Daypart or weekend note. Not a hard availability window. */
+  availability_note?: string;
+  /** Sides chosen with the item, such as a swallow with soup. */
+  accompaniments?: MenuAccompaniment[];
+  /** Fixed bundle contents, such as a box of chops. */
+  includes?: MenuInclusion[];
   iat: number;
   updatedAt?: number;
 };
@@ -65,8 +137,15 @@ export type FloorTable = {
   id: string;
   space_id: string;
   venue_id: string;
+  /** Display name / number; unique within venue. */
   label: string;
   active: boolean;
+  /** Opaque customer-entry token; stable across renames. */
+  qr_token: string;
+  section?: string;
+  capacity?: number;
+  description?: string;
+  /** @deprecated Prefer qr_token + URL helper. */
   qr_payload?: string;
   iat: number;
   updatedAt?: number;
@@ -167,8 +246,11 @@ export type PaymentRecord = {
 export const tableCollections = {
   members: "members",
   venues: "venues",
+  menus: "menus",
   menuCategories: "menuCategories",
   menuItems: "menuItems",
+  modifierGroups: "modifierGroups",
+  menuImports: "menuImports",
   floorTables: "floorTables",
   tableSessions: "tableSessions",
   orders: "orders",
